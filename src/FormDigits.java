@@ -10,7 +10,7 @@ public class FormDigits extends JFrame implements Runnable, MouseListener, Mouse
 
     private final int w = 28;
     private final int h = 28;
-    private final int scale = 32;
+    private final int scale = 24;
 
     private int mousePressed = 0;
     private int mx = 0;

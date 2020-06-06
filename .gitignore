@@ -1,2 +1,4 @@
-train/
 out/
+log/
+/src/resources/test/
+/src/resources/train/

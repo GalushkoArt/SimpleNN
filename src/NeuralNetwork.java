@@ -1,3 +1,5 @@
+import functions.ActivationFunction;
+
 import java.util.function.UnaryOperator;
 
 public class NeuralNetwork {
@@ -7,10 +9,10 @@ public class NeuralNetwork {
     private UnaryOperator<Double> activation;
     private UnaryOperator<Double> derivative;
 
-    public NeuralNetwork(double learningRate, UnaryOperator<Double> activation, UnaryOperator<Double> derivative, int... sizes) {
+    public NeuralNetwork(double learningRate, ActivationFunction activationFunction, int... sizes) {
         this.learningRate = learningRate;
-        this.activation = activation;
-        this.derivative = derivative;
+        this.activation = activationFunction.activation();
+        this.derivative = activationFunction.derivative();
         layers = new Layer[sizes.length];
         for (int i = 0; i < sizes.length; i++) {
             int nextSize = 0;
