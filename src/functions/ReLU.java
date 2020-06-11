@@ -2,10 +2,12 @@ package functions;
 
 import java.util.function.UnaryOperator;
 
-public class ReLU implements ActivationFunction {
+import static java.lang.Math.max;
+
+public class ReLU implements ActivationFunction {  // todo fix ReLU
     @Override
     public UnaryOperator<Double> activation() {
-        return x -> x > 0 ? x : 0.0;
+        return x -> max(0.0, x);
     }
 
     @Override

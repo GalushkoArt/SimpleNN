@@ -1,13 +1,15 @@
 import functions.ActivationFunction;
 
+import java.util.Random;
 import java.util.function.UnaryOperator;
 
 public class NeuralNetwork {
 
-    private double learningRate;
-    private Layer[] layers;
-    private UnaryOperator<Double> activation;
-    private UnaryOperator<Double> derivative;
+    private static Random random = new Random(System.currentTimeMillis());
+    private final double learningRate;
+    private final Layer[] layers;
+    private final UnaryOperator<Double> activation;
+    private final UnaryOperator<Double> derivative;
 
     public NeuralNetwork(double learningRate, ActivationFunction activationFunction, int... sizes) {
         this.learningRate = learningRate;
@@ -19,9 +21,9 @@ public class NeuralNetwork {
             if(i < sizes.length - 1) nextSize = sizes[i + 1];
             layers[i] = new Layer(sizes[i], nextSize);
             for (int j = 0; j < sizes[i]; j++) {
-                layers[i].biases[j] = Math.random() * 2.0 - 1.0;
+                layers[i].biases[j] = random.nextDouble() * 2.0 - 1.0;
                 for (int k = 0; k < nextSize; k++) {
-                    layers[i].weights[j][k] = Math.random() * 2.0 - 1.0;
+                    layers[i].weights[j][k] = random.nextDouble() * 2.0 - 1.0;
                 }
             }
         }
@@ -83,6 +85,10 @@ public class NeuralNetwork {
                 l1.biases[i] += gradients[i];
             }
         }
+    }
+
+    public static void setRandom(long seed) {
+        random = new Random(seed);
     }
 
 }

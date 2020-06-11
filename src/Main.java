@@ -11,17 +11,18 @@ import static functions.ActivationFunctions.sigmoid;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        digits(0.001, 784, 512, 128, 32, 10);
+        NeuralNetwork.setRandom(186237);
+        digits(0.002, 784, 500, 300, 100, 10);
     }
 
     private static void digits(double learningRate, int... sizes) throws IOException {
-        ActivationFunction sigmoid = sigmoid();
-        NeuralNetwork nn = new NeuralNetwork(learningRate, sigmoid, sizes);
+        ActivationFunction function = sigmoid();
+        NeuralNetwork nn = new NeuralNetwork(learningRate, function, sizes);
         PerceptronLearn learn = new PerceptronLearn(nn,"src\\resources\\train");
         PerceptronTest test = new PerceptronTest(nn, "src\\resources\\test");
-        makeLog(learningRate, sigmoid.toString(), sizes);
+        makeLog(learningRate, function.toString(), sizes);
 
-        learn.learn();
+        learn.learn(3000);
         test.test();
 
         FormDigits f = new FormDigits(nn);

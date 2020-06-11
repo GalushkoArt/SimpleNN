@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PerceptronLearn extends Perceptron {
-    protected int epochs = 500;
+    protected int sets = 600;
 
     public PerceptronLearn(NeuralNetwork nn, String path) {
         super(nn, path);
@@ -14,16 +14,16 @@ public class PerceptronLearn extends Perceptron {
         run();
     }
 
-    public void learn(int epochs) throws IOException {
-        this.epochs = epochs;
+    public void learn(int sets) throws IOException {
+        this.sets = sets;
         prepare();
         run();
     }
 
     @Override
     protected void run() {
-        logger.println("epoch,correct,error sum");
-        for (int i = 0; i < epochs; i++) {
+        logger.println("set,correct,error sum");
+        for (int i = 0; i < sets; i++) {
             int correct = 0;
             double errorSum = 0;
             int batchSize = 100;
@@ -40,7 +40,7 @@ public class PerceptronLearn extends Perceptron {
                 errorSum += getErrorSum(outputs, targets);
                 nn.backpropagation(targets);
             }
-            System.out.println("epoch: " + i + ". correct: " + correct + ". error: " + errorSum);
+            System.out.println("set: " + i + ". correct: " + correct + ". error: " + errorSum);
             logger.println(i + "," + correct + "," + errorSum);
         }
         logger.close();

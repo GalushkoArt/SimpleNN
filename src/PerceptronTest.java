@@ -37,6 +37,6 @@ public class PerceptronTest extends Perceptron {
     public  String getFileName() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
         LocalDateTime now = LocalDateTime.now();
-        return  "D:\\Java\\study\\SimpleNN\\log\\" + dtf.format(now) + "-recources.test.csv";
+        return  "D:\\Java\\study\\SimpleNN\\log\\" + dtf.format(now) + "-test.csv";
     }
 }
