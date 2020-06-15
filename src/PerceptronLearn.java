@@ -25,6 +25,7 @@ public class PerceptronLearn extends Perceptron {
         logger.println("set,correct,error sum");
         for (int i = 0; i < sets; i++) {
             int correct = 0;
+            double[] errors;
             double errorSum = 0;
             int batchSize = 100;
             for (int j = 0; j < batchSize; j++) {
@@ -37,8 +38,9 @@ public class PerceptronLearn extends Perceptron {
                 int answer = getAnswer(outputs);
                 if(digit == answer) correct++;
 
+                errors = getErrors(outputs, targets);
                 errorSum += getErrorSum(outputs, targets);
-                nn.backpropagation(targets);
+                nn.backpropagation(errors);
             }
             System.out.println("set: " + i + ". correct: " + correct + ". error: " + errorSum);
             logger.println(i + "," + correct + "," + errorSum);

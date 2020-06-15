@@ -45,10 +45,18 @@ public abstract class Perceptron {
 
     public static double getErrorSum(double[] outputs, double[] targets) {
         double errorSum = 0;
-        for (int k = 0; k < 10; k++) {
+        for (int k = 0; k < outputs.length; k++) {
             errorSum += (targets[k] - outputs[k]) * (targets[k] - outputs[k]);
         }
         return errorSum;
+    }
+
+    public static double[] getErrors(double[] outputs, double[] targets) {
+        double[] errors = new double[outputs.length];
+        for (int k = 0; k < outputs.length; k++) {
+            errors[k] = targets[k] - outputs[k];
+        }
+        return errors;
     }
 
     public static int getAnswer(double[] outputs) {

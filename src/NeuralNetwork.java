@@ -46,11 +46,7 @@ public class NeuralNetwork {
         return layers[layers.length - 1].neurons;
     }
 
-    public void backpropagation(double[] targets) {
-        double[] errors = new double[layers[layers.length - 1].size];
-        for (int i = 0; i < layers[layers.length - 1].size; i++) {
-            errors[i] = targets[i] - layers[layers.length - 1].neurons[i];
-        }
+    public void backpropagation(double[] errors) {
         for (int k = layers.length - 2; k >= 0; k--) {
             Layer l = layers[k];
             Layer l1 = layers[k + 1];
